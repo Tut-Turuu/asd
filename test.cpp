@@ -1,9 +1,19 @@
 #include <iostream>
+#include <cstring>
 
-
+struct Node {
+    Node* prev;
+    int x;
+    Node* next;
+};
 
 int main() {
-    int x = 0x80000000;
+    
 
-    std::cout << x;
+    const char* str = "popa";
+
+    std::cout << strlen(str);
+
+    
+    
 }

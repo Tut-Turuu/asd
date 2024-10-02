@@ -4,23 +4,30 @@
 
 
 void f(int x) {
-    for (int i = 1; i <= x; ++i) {
-        int j = i;
-        while (j % 3 == 0) {
-            j /= 3;
+    unsigned int res = 1;
+    int troiki = 1;
+    int pyatorki = 1;
+    int semerki = 1;
+
+    while (res <= x) {
+        while (res <= x) {
+            while (res <= x) {
+                std::cout << res << ' ';
+                semerki *= 7;
+                res = troiki * pyatorki * semerki;
+            }
+            semerki = 1;
+            pyatorki *= 5;
+            res = troiki * pyatorki * semerki;
         }
-        while (j % 5 == 0) {
-            j /= 5;
-        }        
-        while (j % 7 == 0) {
-            j /= 7;
-        }
-        if (j == 1) std::cout << i << ' ';
+        pyatorki = 1;
+        troiki *= 3;
+        res = troiki * pyatorki * semerki;
     }
     std::cout << '\n';
 }
 
 
 int main() {
-    f(19000);
+    f(1900000000);
 }
