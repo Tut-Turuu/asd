@@ -1,19 +1,13 @@
 #include <iostream>
 #include <cstring>
 
-struct Node {
-    Node* prev;
-    int x;
-    Node* next;
-};
 
 int main() {
     
+    char arr[10];
 
-    const char* str = "popa";
+    std::cin.getline(arr, 10);
 
-    std::cout << strlen(str);
-
-    
+    std::cout << arr;
     
 }

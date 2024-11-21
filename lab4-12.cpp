@@ -73,17 +73,88 @@ void shell_sort(int* arr, int size) {
 }
 
 void radix_sort(int* arr, int size) {
-    // positeive negative segregation
+    
 
 
+}
+
+void heapify(int* arr, int size, int i) {
+	int largest = i;
+
+	int left = 2 * i + 1, right = 2 * i + 2;
+
+	if (left < size && arr[left] > arr[largest]) {
+		largest = left;
+	}
+
+	if (right < size && arr[right] > arr[largest]) {
+		largest = right;
+	}
+
+	if (largest != i) {
+		std::swap(arr[i], arr[largest]);
+		heapify(arr, size, largest);
+	}
 }
 
 void heap_sort(int* arr, int size) {
 
+	for (int i = size / 2 - 1; i >= 0; i--) {
+		heapify(arr, size, i);
+	}
+
+	for (int i = size - 1; i >= 0; i--) {
+		std::swap(arr[0], arr[i]);
+
+		heapify(arr, size, 0);
+	}
 }
 
 void merge_sort(int* arr, int size) {
+    if (size > 1) {
+        int leftSize = size / 2;
+        int rightSize = size - leftSize;
 
+        merge_sort(arr, leftSize);
+        merge_sort(arr + leftSize, rightSize);
+ 
+        int lInd = 0, rInd = leftSize, ind = 0;
+        int* tmpArr = new int[size];
+
+        while (lInd < leftSize || rInd < size) {
+            if (arr[lInd] < arr[rInd]) {
+                tmpArr[ind] = arr[lInd];
+                ind++;
+                lInd++;
+            }
+            else {
+                tmpArr[ind] = arr[rInd];
+                ind++;
+                rInd++;
+            }
+
+            if (lInd == leftSize) {
+                for (; rInd < size; rInd++) {
+                    tmpArr[ind] = arr[rInd];
+                    ind++;
+                }
+                break;
+            }
+            if (rInd == size) {
+                for (; lInd < leftSize; lInd++) {
+                    tmpArr[ind] = arr[lInd];
+                    ind++;
+                }
+                break;
+            }
+        }
+
+        for (int i = 0; i < size; i++) {
+            arr[i] = tmpArr[i];
+        }
+
+        delete[] tmpArr;
+    }
 }
 
 void quick_sort(int* arr, int size) {

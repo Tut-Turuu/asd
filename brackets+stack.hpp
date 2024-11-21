@@ -59,19 +59,16 @@ namespace my {
 }
 
 
-enum class string_cond: bool{
-    invalid = false,
-    valid = true
-};
 
-string_cond brackets(std::string& s) {
+
+bool s_is_valid(std::string& s) {
     my::stack<char> stack;
     for (auto ch : s) {
         if (ch == '{' || ch == '[' || ch == '(') {
             stack.push_back(ch);
         } else if (ch == '}' || ch == ']' || ch == ')') {
             if (stack.size() == 0) {
-                return string_cond::invalid;
+                return false;
             } else {
                 switch (ch) {
                     case '}':
@@ -79,7 +76,7 @@ string_cond brackets(std::string& s) {
                             stack.pop_back();
                             break;
                         } else {
-                            return string_cond::invalid;
+                            return false;
                         }
                         break;
                     case ']':
@@ -87,7 +84,7 @@ string_cond brackets(std::string& s) {
                             stack.pop_back();
                             break;
                         } else {
-                            return string_cond::invalid;
+                            return false;
                         }
                         break;
                     case ')':
@@ -95,12 +92,12 @@ string_cond brackets(std::string& s) {
                             stack.pop_back();
                             break;
                         } else {
-                            return string_cond::invalid;
+                            return false;
                         }
                         break;
                 }
             }
         }
     }
-    return string_cond::valid;
+    return true;
 }
