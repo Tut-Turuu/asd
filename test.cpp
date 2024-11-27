@@ -4,10 +4,8 @@
 
 int main() {
     
-    char arr[10];
+    char* ptr = nullptr;
 
-    std::cin.getline(arr, 10);
-
-    std::cout << arr;
+    delete ptr;
     
 }

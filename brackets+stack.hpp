@@ -1,4 +1,3 @@
-#include <iostream>
 #include <cstring>
 
 
@@ -10,7 +9,7 @@ namespace my {
         int cap;
         T* data;
     public:
-        stack() noexcept: sz(0), cap(0), data(0) {}
+        stack(): sz(0), cap(0), data(0) {}
 
         ~stack() {
             delete[] data;
